@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image"
+                android:layout_width="120dp"
+                android:layout_height="180dp"
+                android:background="@color/gray"
+                android:scaleType="center"
+                app:shapeAppearanceOverlay="@style/ImageBorder8dp" />
+
+            <TextView
+                android:textColor="@color/gray"
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:lines="2"
+                android:text="Những cuộc phưu lưu của Tom Sawyer" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:textColor="@color/gray"
+                    android:id="@+id/star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="4dp"
+                    android:text="4,3"
+                    app:drawableEndCompat="@drawable/ic_star"
+                    app:drawableTint="@color/gray" />
+
+                <TextView
+                    android:textColor="@color/gray"
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="3.000 đ" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/padding"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+    </LinearLayout>
+</layout>
