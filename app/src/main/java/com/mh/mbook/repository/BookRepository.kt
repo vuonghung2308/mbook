@@ -2,10 +2,8 @@ package com.mh.mbook.repository
 
 import androidx.lifecycle.LiveData
 import com.mh.mbook.api.BookService
-import com.mh.mbook.api.response.BaseBookResponse
-import com.mh.mbook.api.response.BookDetailResponse
-import com.mh.mbook.api.response.BookResponse
-import com.mh.mbook.api.response.CategoryResponse
+import com.mh.mbook.api.request.CommentRequest
+import com.mh.mbook.api.response.*
 import com.mh.mbook.db.Cache
 import com.mh.mbook.util.AppExecutors
 import com.mh.mbook.vo.Resource
@@ -84,6 +82,20 @@ class BookRepository @Inject constructor(
             override fun loadFromDb() = cache.bookResponse
 
             override fun createCall() = service.getBook(id)
+        }.asLiveData()
+    }
+
+    fun comment(id: Long, star: Int, comment: String?): LiveData<Resource<BaseResponse>> {
+        return object : NetworkBoundResource<BaseResponse, BaseResponse>(executors) {
+            override fun saveCallResult(item: BaseResponse) {
+                cache.commentResponse.postValue(item)
+            }
+
+            override fun shouldFetch(data: BaseResponse?) = true
+
+            override fun loadFromDb() = cache.commentResponse
+
+            override fun createCall() = service.comment(CommentRequest(id, star, comment))
         }.asLiveData()
     }
 }

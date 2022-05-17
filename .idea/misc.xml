@@ -20,7 +20,7 @@
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/fragment_accoutn.xml" value="0.15220179563916203" />
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/fragment_book.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/fragment_book_base.xml" value="0.2975630611372381" />
-        <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/fragment_book_detail.xml" value="0.3076923076923077" />
+        <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/fragment_book_detail.xml" value="0.4699527346387576" />
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/fragment_cart_detail.xml" value="0.306368330464716" />
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/fragment_categories.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/fragment_category.xml" value="0.2975630611372381" />
@@ -40,8 +40,10 @@
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/item_cart.xml" value="0.67" />
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/item_cart_item.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/item_category.xml" value="0.2497733454215775" />
+        <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/item_comment.xml" value="0.67" />
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/item_order.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/item_order_item.xml" value="0.2975630611372381" />
+        <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/item_rating.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/loading_state.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/main_activity.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/layout/repo_fragment.xml" value="0.18541666666666667" />
@@ -55,9 +57,12 @@
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/menu/menu_main.xml" value="0.2975630611372381" />
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1935" />
         <entry key="..\:/Users/Ronin/Documents/Source-Code/MBook/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1935" />
+        <entry key="..\:/Users/Ronin/Documents/Source-Code/Mbook/app/src/main/res/layout/fragment_book_detail.xml" value="0.2497733454215775" />
+        <entry key="..\:/Users/Ronin/Documents/Source-Code/Mbook/app/src/main/res/layout/item_cart_item.xml" value="0.2497733454215775" />
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

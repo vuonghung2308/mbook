@@ -16,6 +16,7 @@ class Cache @Inject constructor() {
     val topNewResponse = MutableLiveData<List<BookResponse>>(null)
     val categoriesResponse = MutableLiveData<List<CategoryResponse>>(null)
     val bookResponse = MutableLiveData<BookDetailResponse>(null)
+    val commentResponse = MutableLiveData<BaseResponse>(null)
 
 
     val cartResponse = MutableLiveData<CartResponse>(null)

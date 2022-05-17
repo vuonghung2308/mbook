@@ -1,5 +1,6 @@
 package com.mh.mbook.api.response
 
+import com.mh.mbook.di.AppModule
 import java.text.NumberFormat
 import java.util.*
 
@@ -18,7 +19,7 @@ data class BookResponse(
     }
 
     val imageUrl: String
-        get() = "http://192.168.1.2:8080/api/file/${image}"
+        get() = "${AppModule.BASE_URL}/api/file/${image}"
 
     val displayPrice: String
         get() = currency.format(price)

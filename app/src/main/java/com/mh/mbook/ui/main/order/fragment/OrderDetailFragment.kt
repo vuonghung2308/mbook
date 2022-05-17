@@ -31,7 +31,7 @@ class OrderDetailFragment(
 
     private val adapter by lazy {
         OrderItemAdapter(executors) {
-            viewModel.remove(it.id)
+            viewModel.removeItem(it.id)
         }
     }
 

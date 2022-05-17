@@ -40,7 +40,6 @@ class DashboardFragment : Fragment() {
                 }
                 R.id.item_cart -> {
                     binding.viewPaper.currentItem = 1
-                    activity.viewModel.getCart()
                     true
                 }
                 R.id.item_profile -> {

@@ -7,7 +7,7 @@ data class CartResponse(
     val id: Long,
     val totalPrice: Long,
     val totalQuantity: Long,
-    val items: List<ItemResponse>
+    val items: List<ItemResponse>?
 ) {
     companion object {
         private val locale = Locale("vi", "VN")

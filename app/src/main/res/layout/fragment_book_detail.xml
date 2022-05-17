@@ -12,6 +12,14 @@
         <variable
             name="addCb"
             type="com.mh.mbook.ui.common.DoStCallback" />
+
+        <variable
+            name="moreCb"
+            type="com.mh.mbook.ui.common.DoStCallback" />
+
+        <variable
+            name="postCb"
+            type="com.mh.mbook.ui.common.DoStCallback" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -137,10 +145,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text='@{book.ratings.size()+" bài đánh giá"}'
+                            android:text='@{book.totalRating+" đánh giá"}'
                             android:textColor="@color/gray"
                             android:textSize="12sp"
-                            tools:text="12 bài đánh giá" />
+                            tools:text="12 đánh giá" />
                     </LinearLayout>
 
                     <View
@@ -266,7 +274,6 @@
                     android:textSize="16sp" />
 
                 <LinearLayout
-                    android:id="@+id/descriptions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -279,10 +286,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
+                        android:ellipsize="end"
+                        android:maxLines="6"
                         android:textColor="@color/gray"
-                        android:visibility="gone"
                         tools:text="@string/book_description"
                         tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tv_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="6dp"
+                        android:onClick="@{() -> moreCb.doSt()}"
+                        android:text="Xem thêm"
+                        android:textColor="@color/blue" />
                 </LinearLayout>
 
                 <TextView
@@ -331,12 +349,79 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
-                            android:text='@{book.ratings.size()+""}'
+                            android:text='@{book.totalRating+" đánh giá"}'
                             android:textColor="@color/gray"
                             android:textSize="11sp"
                             tools:text="132" />
                     </LinearLayout>
                 </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ratings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_rating" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Xếp hạng cuốn sách này"
+                    android:textColor="#4B4B4B"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Cho người khác biết suy nghĩ của bạn"
+                    android:textColor="@color/gray"
+                    android:textSize="11sp" />
+
+                <RatingBar
+                    android:id="@+id/rating_bar"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="12dp"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:stepSize="1" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="12dp"
+                    android:hint="Mô tả trải nghiệm của bạn (không bắt buộc)"
+                    app:boxStrokeColor="@color/input_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btn_post"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="20dp"
+                    android:onClick="@{() -> postCb.doSt()}"
+                    android:text="Đăng bài"
+                    android:textAllCaps="false" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

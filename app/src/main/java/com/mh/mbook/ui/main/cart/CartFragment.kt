@@ -27,7 +27,7 @@ class CartFragment : Fragment(), Injectable {
 
     private val adapter by lazy {
         CartItemAdapter(executors) {
-            viewModel.remove(it.id)
+            viewModel.removeItem(it.id)
         }
     }
 
@@ -51,7 +51,7 @@ class CartFragment : Fragment(), Injectable {
         viewModel.cart.observe(viewLifecycleOwner) {
             it.data ?: return@observe
             if (it.status == Status.SUCCESS) {
-                if (it.data.items.isEmpty()) {
+                if (it.data.items.isNullOrEmpty()) {
                     binding.linearLayout.visibility = View.INVISIBLE
                 } else {
                     binding.cart = it.data
@@ -161,6 +161,11 @@ class CartFragment : Fragment(), Injectable {
 //                }
 //            }
 //        )
+    }
+
+    override fun onResume() {
+        activity.viewModel.getCart()
+        super.onResume()
     }
 
     private val activity: MainActivity

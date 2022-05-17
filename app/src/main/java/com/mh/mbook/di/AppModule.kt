@@ -20,6 +20,10 @@ import javax.inject.Singleton
 
 @Module(includes = [ViewModelModule::class])
 class AppModule {
+    companion object {
+        val BASE_URL = "http://192.168.1.2:8080";
+    }
+
     @Singleton
     @Provides
     fun provideGithubService(retrofit: Retrofit): BookService {
@@ -38,7 +42,7 @@ class AppModule {
             .addInterceptor(tokenInterceptor)
             .build()
         return Retrofit.Builder()
-            .baseUrl("http://192.168.1.2:8080/api/")
+            .baseUrl("${BASE_URL}/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .client(client)

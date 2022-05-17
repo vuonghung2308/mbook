@@ -54,4 +54,7 @@ interface BookService {
 
     @POST("order/make")
     fun makeOrder(@Body body: MakeOrderRequest): LiveData<ApiResponse<BaseResponse>>
+
+    @POST("book/comment")
+    fun comment(@Body body: CommentRequest): LiveData<ApiResponse<BaseResponse>>
 }

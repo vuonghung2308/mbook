@@ -34,7 +34,7 @@ class UserRepository @Inject constructor(
                 cache.signInResponse.postValue(item)
                 if (!item.isError) {
                     val user = User(
-                        item.fullname, item.username,
+                        item.id, item.fullname, item.username,
                         item.email, item.token, item.role
                     )
                     sp.edit().putString(
