@@ -3,6 +3,7 @@ package com.mh.mbook.repository
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import com.mh.mbook.api.ApiResponse
 import com.mh.mbook.api.BookService
@@ -111,6 +112,13 @@ class UserRepository @Inject constructor(
 
     fun clearUser() {
         runBlocking(Dispatchers.IO) {
+            val fm = FirebaseMessaging.getInstance()
+            fm.deleteToken().addOnCompleteListener {
+                fm.token.addOnCompleteListener {
+                    sp.edit().putString("token", it.result)
+                        .apply()
+                }
+            }
             sp.edit().putString(
                 "user", null
             ).apply()

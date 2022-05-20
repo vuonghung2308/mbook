@@ -4,12 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.messaging.FirebaseMessaging
 import com.mh.mbook.repository.BookRepository
 import com.mh.mbook.repository.CartRepository
 import com.mh.mbook.repository.OrderRepository
 import com.mh.mbook.repository.UserRepository
 import com.mh.mbook.util.active
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(

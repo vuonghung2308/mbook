@@ -38,7 +38,6 @@ class App : Application(), HasAndroidInjector {
                 fm.token.addOnCompleteListener {
                     sp.edit().putString("token", it.result)
                         .commit()
-                    println(it.result)
                 }
             }
         }
@@ -48,8 +47,8 @@ class App : Application(), HasAndroidInjector {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val manager = getSystemService(Context.NOTIFICATION_SERVICE)
             manager as NotificationManager
-            val id = getString(R.string.channel_id)
             val name = getString(R.string.channel_name)
+            val id = getString(R.string.channel_id)
             val important = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel(id, name, important)
             manager.createNotificationChannel(channel)
