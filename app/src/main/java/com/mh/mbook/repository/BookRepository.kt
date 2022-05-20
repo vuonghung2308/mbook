@@ -85,6 +85,18 @@ class BookRepository @Inject constructor(
         }.asLiveData()
     }
 
+    fun getBooks(categoryId: Long): LiveData<Resource<List<BookResponse>>> {
+        return object : NetworkBoundResource<List<BookResponse>, List<BookResponse>>(executors) {
+            override fun saveCallResult(item: List<BookResponse>) {
+                cache.booksResponse.postValue(item)
+            }
+
+            override fun shouldFetch(data: List<BookResponse>?) = true
+            override fun createCall() = service.getBooks(categoryId)
+            override fun loadFromDb() = cache.booksResponse
+        }.asLiveData()
+    }
+
     fun comment(id: Long, star: Int, comment: String?): LiveData<Resource<BaseResponse>> {
         return object : NetworkBoundResource<BaseResponse, BaseResponse>(executors) {
             override fun saveCallResult(item: BaseResponse) {

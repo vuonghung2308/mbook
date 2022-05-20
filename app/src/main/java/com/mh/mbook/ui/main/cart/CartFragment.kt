@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mh.mbook.R
+import com.mh.mbook.api.response.ItemResponse
 import com.mh.mbook.databinding.FragmentCartDetailBinding
 import com.mh.mbook.di.Injectable
 import com.mh.mbook.ui.common.callback
@@ -26,9 +27,11 @@ class CartFragment : Fragment(), Injectable {
             by viewModels({ activity })
 
     private val adapter by lazy {
-        CartItemAdapter(executors) {
-            viewModel.removeItem(it.id)
-        }
+        CartItemAdapter(
+            executors,
+            { i -> viewModel.removeItem(i.id) },
+            { i, q -> viewModel.updateItem(i, q) }
+        )
     }
 
     override fun onCreateView(
@@ -51,16 +54,22 @@ class CartFragment : Fragment(), Injectable {
         viewModel.cart.observe(viewLifecycleOwner) {
             it.data ?: return@observe
             if (it.status == Status.SUCCESS) {
+                binding.cart = it.data
+                adapter.submitList(it.data.items)
                 if (it.data.items.isNullOrEmpty()) {
-                    binding.linearLayout.visibility = View.INVISIBLE
+                    binding.tvEmpty.visibility = View.VISIBLE
                 } else {
-                    binding.cart = it.data
-                    adapter.submitList(it.data.items)
-                    binding.linearLayout.visibility = View.VISIBLE
+                    binding.tvEmpty.visibility = View.INVISIBLE
                 }
             }
         }
-        viewModel.remove.observe(viewLifecycleOwner) {
+        viewModel.removeItem.observe(viewLifecycleOwner) {
+            it.data ?: return@observe
+            if (it.status == Status.SUCCESS) {
+                viewModel.getCart()
+            }
+        }
+        viewModel.updateItem.observe(viewLifecycleOwner) {
             it.data ?: return@observe
             if (it.status == Status.SUCCESS) {
                 viewModel.getCart()
@@ -109,6 +118,7 @@ class CartFragment : Fragment(), Injectable {
             }
             viewModel.makeOrder(name, phone, address)
         }
+        viewModel.getCart()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -136,8 +146,6 @@ class CartFragment : Fragment(), Injectable {
             }
         }
 
-        var isWhite = true
-        var old = 0
 //        binding.scrollView.setOnScrollChangeListener(
 //            NestedScrollView.OnScrollChangeListener { _, _, y, _, _ ->
 //                if (y == 0 && !isWhite) {
@@ -161,11 +169,6 @@ class CartFragment : Fragment(), Injectable {
 //                }
 //            }
 //        )
-    }
-
-    override fun onResume() {
-        activity.viewModel.getCart()
-        super.onResume()
     }
 
     private val activity: MainActivity

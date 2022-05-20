@@ -1,6 +1,6 @@
 package com.mh.mbook.api.request
 
-data class AddItemRequest(
+data class CartItemRequest(
     val bookId: Long,
     val quantity: Int
 )

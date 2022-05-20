@@ -19,12 +19,12 @@ class OrderRepository @Inject constructor(
     fun makeOrder(name: String, address: String, phone: String): LiveData<Resource<BaseResponse>> {
         return object : NetworkBoundResource<BaseResponse, BaseResponse>(executors) {
             override fun saveCallResult(item: BaseResponse) {
-                cache.addItemResponse.postValue(item)
+                cache.makeOrderResponse.postValue(item)
             }
 
             override fun shouldFetch(data: BaseResponse?) = true
 
-            override fun loadFromDb() = cache.addItemResponse
+            override fun loadFromDb() = cache.makeOrderResponse
 
             override fun createCall() = service.makeOrder(MakeOrderRequest(name, phone, address))
         }.asLiveData()

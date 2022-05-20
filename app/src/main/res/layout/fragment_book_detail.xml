@@ -20,6 +20,14 @@
         <variable
             name="postCb"
             type="com.mh.mbook.ui.common.DoStCallback" />
+
+        <variable
+            name="increaseCb"
+            type="com.mh.mbook.ui.common.DoStCallback" />
+
+        <variable
+            name="decreaseCb"
+            type="com.mh.mbook.ui.common.DoStCallback" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -112,9 +120,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text='@{"Giá: " + book.displayPrice}'
+                            android:text='@{"Giá bán: " + book.displayPrice}'
                             android:textColor="@color/gray"
-                            tools:text="Giá: 3.000 đ" />
+                            tools:text="Giá bán: 3.000 đ" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -224,31 +232,43 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-medium"
-                        android:text="Số lượng:"
+                        android:text="Số lượng"
                         android:textColor="@color/gray"
                         android:textSize="16sp" />
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/circle"
+                        android:onClick="@{() -> decreaseCb.doSt()}"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_sub"
+                        app:tint="@color/gray" />
+
+                    <TextView
+                        android:id="@+id/tv_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="1"
+                        android:textColor="@color/gray"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/circle"
+                        android:onClick="@{() -> increaseCb.doSt()}"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_add"
+                        app:tint="@color/gray" />
+
+                    <View
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/white">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tv_quantity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="-1dp"
-                            android:backgroundTint="@color/white"
-                            android:inputType="numberDecimal"
-                            android:maxLength="3"
-                            android:paddingVertical="0dp"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="0dp"
-                            android:singleLine="true"
-                            android:text="1" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_weight="1" />
 
                     <Button
                         android:id="@+id/btn_add"
@@ -407,7 +427,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_comment"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:singleLine="true" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button

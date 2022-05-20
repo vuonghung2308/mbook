@@ -12,8 +12,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.mh.mbook.R
+import com.mh.mbook.api.response.CategoryResponse
 import com.mh.mbook.databinding.ActivityMainBinding
 import com.mh.mbook.ui.main.book.BookDetailFragment
+import com.mh.mbook.ui.main.book.ListBookFragment
 import com.mh.mbook.ui.main.dashboard.DashboardFragment
 import com.mh.mbook.ui.main.order.fragment.ListOrderFragment
 import com.mh.mbook.ui.main.order.fragment.OrderDetailFragment
@@ -65,6 +67,13 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
     fun addFragmentListOrder() {
         supportFragmentManager.beginTransaction()
             .add(R.id.container, ListOrderFragment())
+            .addToBackStack(null)
+            .commit()
+    }
+
+    fun addFragmentListBook(id: CategoryResponse) {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.container, ListBookFragment(id))
             .addToBackStack(null)
             .commit()
     }

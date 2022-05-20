@@ -3,7 +3,7 @@ package com.mh.mbook.api.response
 import com.mh.mbook.di.AppModule
 
 data class CategoryResponse(
-    val id: String,
+    val id: Long,
     val name: String,
     val icon: String
 ) {

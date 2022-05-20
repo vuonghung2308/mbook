@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "549612866983",
+    "project_id": "mbook-9477f",
+    "storage_bucket": "mbook-9477f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549612866983:android:4b4bbafdd25191b8c2fa82",
+        "android_client_info": {
+          "package_name": "com.mh.mbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "549612866983-llml06p9lvsgpe86qne3pvm428pjfchm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAH3eZMtuV9K5MAdkE5wCb7iRmsJijlVUw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "549612866983-llml06p9lvsgpe86qne3pvm428pjfchm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

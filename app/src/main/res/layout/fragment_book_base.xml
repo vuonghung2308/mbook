@@ -155,6 +155,7 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:paddingBottom="20dp"
                 android:id="@+id/topComic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

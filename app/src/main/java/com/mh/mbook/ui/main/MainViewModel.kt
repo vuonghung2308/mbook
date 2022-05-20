@@ -22,10 +22,12 @@ class MainViewModel @Inject constructor(
     private val _topSale = MutableLiveData<Any>()
     private val _topNew = MutableLiveData<Any>()
     private val _categories = MutableLiveData<Any>()
+    private val _books = MutableLiveData<Long>()
     private val _book = MutableLiveData<Long>()
     private val _cart = MutableLiveData<Any>()
-    private val _add = MutableLiveData<Pair<Long, Int>>()
-    private val _remove = MutableLiveData<Long>()
+    private val _addItem = MutableLiveData<Pair<Long, Int>>()
+    private val _removeItem = MutableLiveData<Long>()
+    private val _updateItem = MutableLiveData<Pair<Long, Int>>()
     private val _clear = MutableLiveData<Any>()
     private val _user = MutableLiveData<Any>()
     private val _order = MutableLiveData<Long>()
@@ -42,11 +44,13 @@ class MainViewModel @Inject constructor(
     val baseBook = _baseBook.switchMap { bookRepo.baseBook() }
     val topSale = _topSale.switchMap { bookRepo.topSale() }
     val topNew = _topNew.switchMap { bookRepo.topNew() }
+    val books = _books.switchMap { bookRepo.getBooks(it) }
     val categories = _categories.switchMap { bookRepo.categories() }
     val book = _book.switchMap { bookRepo.getBook(it) }
     val cart = _cart.switchMap { cartRepo.getCart() }
-    val add = _add.switchMap { cartRepo.addItem(it.first, it.second) }
-    val remove = _remove.switchMap { cartRepo.removeItem(it) }
+    val addItem = _addItem.switchMap { cartRepo.addItem(it.first, it.second) }
+    val removeItem = _removeItem.switchMap { cartRepo.removeItem(it) }
+    val updateItem = _updateItem.switchMap { cartRepo.updateItem(it.first, it.second) }
     val clear = _clear.switchMap { cartRepo.clearCart() }
 
     val comment = _comment.switchMap {
@@ -67,10 +71,13 @@ class MainViewModel @Inject constructor(
 
 
     fun add(id: Long, quantity: Int) =
-        (_add.setValue(Pair(id, quantity)))
+        (_addItem.setValue(Pair(id, quantity)))
 
     fun removeItem(id: Long) =
-        (_remove.setValue(id))
+        (_removeItem.setValue(id))
+
+    fun updateItem(id: Long, quantity: Int) =
+        (_updateItem.setValue(Pair(id, quantity)))
 
     fun clearCart() = _clear.active()
     fun getOrders() = _orders.active()
@@ -88,5 +95,9 @@ class MainViewModel @Inject constructor(
 
     fun comment(id: Long, star: Int, comment: String?) {
         _comment.value = Triple(id, star, comment)
+    }
+
+    fun getBooks(categoryId: Long) {
+        _books.value = categoryId
     }
 }

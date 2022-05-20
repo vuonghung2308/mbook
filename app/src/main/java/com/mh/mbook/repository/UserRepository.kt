@@ -47,7 +47,11 @@ class UserRepository @Inject constructor(
 
             override fun loadFromDb() = cache.signInResponse
 
-            override fun createCall() = service.signIn(SignInRequest(username, password))
+            override fun createCall(): LiveData<ApiResponse<SignInResponse>> {
+                val token = sp.getString("token", null).toString()
+                println(token)
+                return service.signIn(SignInRequest(username, password, token))
+            }
         }.asLiveData()
     }
 

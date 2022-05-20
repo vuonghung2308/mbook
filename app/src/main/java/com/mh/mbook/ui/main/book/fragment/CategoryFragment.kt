@@ -26,7 +26,9 @@ class CategoryFragment : Fragment(), Injectable {
             by viewModels({ activity })
 
     private val categoryAdapter: CategoryAdapter by lazy {
-        CategoryAdapter(excutors)
+        CategoryAdapter(excutors) {
+            activity.addFragmentListBook(it)
+        }
     }
 
     override fun onCreateView(

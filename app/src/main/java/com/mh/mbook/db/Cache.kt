@@ -14,6 +14,7 @@ class Cache @Inject constructor() {
     val baseBookResponse = MutableLiveData<BaseBookResponse>(null)
     val topSaleResponse = MutableLiveData<List<BookResponse>>(null)
     val topNewResponse = MutableLiveData<List<BookResponse>>(null)
+    val booksResponse = MutableLiveData<List<BookResponse>>(null)
     val categoriesResponse = MutableLiveData<List<CategoryResponse>>(null)
     val bookResponse = MutableLiveData<BookDetailResponse>(null)
     val commentResponse = MutableLiveData<BaseResponse>(null)
@@ -21,6 +22,7 @@ class Cache @Inject constructor() {
 
     val cartResponse = MutableLiveData<CartResponse>(null)
     val addItemResponse = MutableLiveData<BaseResponse>(null)
+    val updateItemResponse = MutableLiveData<BaseResponse>(null)
     val removeItemResponse = MutableLiveData<BaseResponse>(null)
     val clearCartResponse = MutableLiveData<BaseResponse>(null)
 

@@ -89,7 +89,7 @@ class BookDetailFragment(
                 }
             }
         }
-        viewModel.add.observe(viewLifecycleOwner) {
+        viewModel.addItem.observe(viewLifecycleOwner) {
             it.data ?: return@observe
             if (it.status == Status.SUCCESS && !isButtonAddClicked) {
                 Toast.makeText(
@@ -97,6 +97,7 @@ class BookDetailFragment(
                     Toast.LENGTH_SHORT
                 ).show()
                 isButtonAddClicked = true
+                viewModel.getCart()
             }
         }
         viewModel.comment.observe(viewLifecycleOwner) {
@@ -139,6 +140,14 @@ class BookDetailFragment(
                 binding.description.maxLines = 6
                 binding.tvMore.text = "Xem thêm"
             }
+        }
+        binding.increaseCb = callback {
+            val quantity = binding.tvQuantity.text.toString().toInt()
+            binding.tvQuantity.text = (quantity + 1).toString()
+        }
+        binding.decreaseCb = callback {
+            val quantity = binding.tvQuantity.text.toString().toInt()
+            binding.tvQuantity.text = (if (quantity == 1) 1 else quantity - 1).toString()
         }
     }
 

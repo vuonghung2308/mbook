@@ -2,7 +2,7 @@ package com.mh.mbook.repository
 
 import androidx.lifecycle.LiveData
 import com.mh.mbook.api.BookService
-import com.mh.mbook.api.request.AddItemRequest
+import com.mh.mbook.api.request.CartItemRequest
 import com.mh.mbook.api.request.RemoveRequest
 import com.mh.mbook.api.response.BaseResponse
 import com.mh.mbook.api.response.CartResponse
@@ -33,14 +33,28 @@ class CartRepository @Inject constructor(
     fun addItem(id: Long, quantity: Int): LiveData<Resource<BaseResponse>> {
         return object : NetworkBoundResource<BaseResponse, BaseResponse>(executors) {
             override fun saveCallResult(item: BaseResponse) {
-                cache.makeOrderResponse.postValue(item)
+                cache.addItemResponse.postValue(item)
             }
 
             override fun shouldFetch(data: BaseResponse?) = true
 
-            override fun loadFromDb() = cache.makeOrderResponse
+            override fun loadFromDb() = cache.addItemResponse
 
-            override fun createCall() = service.addItem(AddItemRequest(id, quantity))
+            override fun createCall() = service.addItem(CartItemRequest(id, quantity))
+        }.asLiveData()
+    }
+
+    fun updateItem(id: Long, quantity: Int): LiveData<Resource<BaseResponse>> {
+        return object : NetworkBoundResource<BaseResponse, BaseResponse>(executors) {
+            override fun saveCallResult(item: BaseResponse) {
+                cache.updateItemResponse.postValue(item)
+            }
+
+            override fun shouldFetch(data: BaseResponse?) = true
+
+            override fun loadFromDb() = cache.updateItemResponse
+
+            override fun createCall() = service.updateItem(CartItemRequest(id, quantity))
         }.asLiveData()
     }
 

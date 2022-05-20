@@ -31,6 +31,9 @@ interface BookService {
     @GET("book/top-new")
     fun topNew(): LiveData<ApiResponse<List<BookResponse>>>
 
+    @GET("book/by-category")
+    fun getBooks(@Query("id") id: Long): LiveData<ApiResponse<List<BookResponse>>>
+
     @GET("category")
     fun categories(): LiveData<ApiResponse<List<CategoryResponse>>>
 
@@ -44,7 +47,10 @@ interface BookService {
     fun removeItem(@Body body: RemoveRequest): LiveData<ApiResponse<BaseResponse>>
 
     @POST("cart/add")
-    fun addItem(@Body body: AddItemRequest): LiveData<ApiResponse<BaseResponse>>
+    fun addItem(@Body body: CartItemRequest): LiveData<ApiResponse<BaseResponse>>
+
+    @POST("cart/update")
+    fun updateItem(@Body body: CartItemRequest): LiveData<ApiResponse<BaseResponse>>
 
     @GET("order")
     fun getOrders(): LiveData<ApiResponse<List<OrderResponse>>>

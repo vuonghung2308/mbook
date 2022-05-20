@@ -21,7 +21,7 @@ import javax.inject.Singleton
 @Module(includes = [ViewModelModule::class])
 class AppModule {
     companion object {
-        val BASE_URL = "http://192.168.1.2:8080";
+        val BASE_URL = "http://192.168.1.13:8080";
     }
 
     @Singleton

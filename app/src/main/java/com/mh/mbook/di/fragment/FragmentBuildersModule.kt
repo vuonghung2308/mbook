@@ -1,6 +1,7 @@
 package com.mh.mbook.di.fragment
 
 import com.mh.mbook.ui.main.book.BookDetailFragment
+import com.mh.mbook.ui.main.book.ListBookFragment
 import com.mh.mbook.ui.main.book.fragment.BaseBookFragment
 import com.mh.mbook.ui.main.book.fragment.CategoryFragment
 import com.mh.mbook.ui.main.book.fragment.TopNewFragment
@@ -36,4 +37,7 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeBookDetailFragment(): BookDetailFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeListBookFragment(): ListBookFragment
 }

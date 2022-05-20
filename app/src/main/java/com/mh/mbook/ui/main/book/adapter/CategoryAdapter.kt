@@ -12,7 +12,8 @@ import com.mh.mbook.ui.common.DataBoundListAdapter
 import com.mh.mbook.util.AppExecutors
 
 class CategoryAdapter(
-    executors: AppExecutors
+    executors: AppExecutors,
+    private val callback: (id: CategoryResponse) -> Unit
 ) : DataBoundListAdapter<CategoryResponse, ItemCategoryBinding>(
     appExecutors = executors,
     diffCallback = object : DiffUtil.ItemCallback<CategoryResponse>() {
@@ -49,5 +50,8 @@ class CategoryAdapter(
             .load(item.iconUrl)
             .into(binding.image)
         binding.name.text = item.name
+        binding.root.setOnClickListener {
+            callback.invoke(item)
+        }
     }
 }
